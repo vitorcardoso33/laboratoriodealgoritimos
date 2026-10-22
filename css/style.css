@@ -1,0 +1,159 @@
+:root {
+    --bg-dark: #121214;
+    --bg-panel: #202024;
+    --text-main: #e1e1e6;
+    --text-muted: #8d8d99;
+    --primary: #00b37e;
+    --primary-hover: #00875f;
+    --secondary: #323238;
+    --secondary-hover: #29292e;
+    --error: #f75a68;
+    --border: #323238;
+    
+    /* Cores da Visualização */
+    --vis-default: #323238;
+    --vis-compare: #f6c036;
+    --vis-action: #ff6b6b;
+    --vis-sorted: #00b37e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+.hidden { display: none !important; }
+
+header { text-align: center; margin-bottom: 2rem; }
+header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem; }
+header p { color: var(--text-muted); }
+
+/* Painéis */
+.control-panel, .visualizer-panel, .metrics-panel, .test-panel {
+    background-color: var(--bg-panel);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+/* Formulários */
+.input-group, .options-group { margin-bottom: 1.5rem; }
+label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-muted); }
+
+input[type="text"], select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus { border-color: var(--primary); }
+.error-border { border-color: var(--error) !important; }
+.error { color: var(--error); font-size: 0.85rem; margin-top: 0.5rem; font-weight: bold; }
+
+.options-group { display: flex; gap: 1rem; }
+.select-wrapper { flex: 1; }
+
+/* Botões */
+.actions, .playback-controls { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1;
+    text-align: center;
+}
+.btn.primary { background-color: var(--primary); color: white; }
+.btn.primary:hover { background-color: var(--primary-hover); }
+.btn.secondary { background-color: var(--secondary); color: var(--text-main); }
+.btn.secondary:hover { background-color: var(--secondary-hover); }
+.icon-btn { background-color: var(--secondary); color: var(--text-main); min-width: 120px; }
+.icon-btn:hover { background-color: var(--secondary-hover); }
+
+/* Visualizador */
+.visualizer-panel h3, .metrics-panel h3 { color: var(--primary); margin-bottom: 1rem; text-align: center; }
+.playback-controls { justify-content: center; margin-bottom: 1.5rem; }
+.legend { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; font-size: 0.85rem; flex-wrap: wrap;}
+.legend-item { display: flex; align-items: center; gap: 0.5rem; }
+.color-box { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+.color-box.default { background-color: var(--vis-default); }
+.color-box.compare { background-color: var(--vis-compare); }
+.color-box.action { background-color: var(--vis-action); }
+.color-box.sorted { background-color: var(--vis-sorted); }
+
+.array-visualizer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--bg-dark);
+    border-radius: 6px;
+    min-height: 80px;
+}
+.array-block {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--vis-default);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+.array-block.compare { background-color: var(--vis-compare); color: #000; transform: scale(1.05); }
+.array-block.action { background-color: var(--vis-action); transform: translateY(-5px); }
+.array-block.sorted { background-color: var(--vis-sorted); border-color: #00ffb3; }
+
+/* Métricas e Logs */
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+.metric-box { background-color: var(--bg-dark); padding: 1rem; border-radius: 6px; text-align: center; border: 1px solid var(--border); }
+.metric-box h4 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.metric-box span { font-size: 2rem; font-weight: bold; color: var(--text-main); font-family: monospace; }
+.log-container h4 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.log-box {
+    background-color: #0d0d0f;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    height: 180px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #a9a9b3;
+}
+.log-box p { margin-bottom: 0.4rem; border-bottom: 1px solid #202024; padding-bottom: 0.3rem; }
+.log-box span.highlight { color: var(--primary); font-weight: bold; }
+
+/* Painel de Testes */
+.test-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;}
+.badge { padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: bold; font-size: 0.9rem; }
+.badge.success { background-color: rgba(0, 179, 126, 0.2); color: var(--vis-sorted); }
+.badge.error { background-color: rgba(247, 90, 104, 0.2); color: var(--error); }
+
+.test-table-container { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background-color: var(--bg-dark); font-size: 0.85rem; }
+th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background-color: var(--secondary); color: var(--text-muted); }
+.status-pass { color: var(--vis-sorted); font-weight: bold; }
+.status-fail { color: var(--error); font-weight: bold; }
+
+@media (max-width: 600px) {
+    .options-group, .actions, .metrics-grid { flex-direction: column; grid-template-columns: 1fr; }
+    header h1 { font-size: 2rem; }
+}

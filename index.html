@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório de Algoritmos de Ordenação</title>
+    <link   rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Laboratório de Ordenação</h1>
+            <p>Visualizador interativo de algoritmos passo a passo.</p>
+        </header>
+
+        <main>
+            <!-- PAINEL DE CONTROLE -->
+            <section class="control-panel">
+                <div class="input-group">
+                    <label for="array-input">Vetor de Entrada (separe com vírgulas ou espaços. Use '.' para decimais):</label>
+                    <input type="text" id="array-input" placeholder="Ex: 8, 3.5, 10, -2, 3, 1">
+                    <div id="error-message" class="error hidden"></div>
+                </div>
+
+                <div class="options-group">
+                    <div class="select-wrapper">
+                        <label for="algorithm-select">Algoritmo:</label>
+                        <select id="algorithm-select">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <label for="order-select">Sentido:</label>
+                        <select id="order-select">
+                            <option value="asc">Crescente</option>
+                            <option value="desc">Decrescente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="btn-sort" class="btn primary">Preparar Visualização</button>
+                    <button id="btn-random" class="btn secondary">Gerar Aleatórios</button>
+                    <button id="btn-run-tests" class="btn secondary">Executar Testes Automatizados</button>
+                </div>
+            </section>
+
+            <!-- PAINEL DE VISUALIZAÇÃO INTERATIVA -->
+            <section id="visualization-section" class="visualizer-panel hidden">
+                <h3>Visualização Dinâmica</h3>
+                <div class="playback-controls">
+                    <button id="btn-play" class="btn icon-btn" title="Reproduzir Automático">▶️ Play</button>
+                    <button id="btn-pause" class="btn icon-btn hidden" title="Pausar">⏸️ Pause</button>
+                    <button id="btn-next" class="btn icon-btn" title="Avançar 1 Passo">⏭️ Avançar</button>
+                    <button id="btn-end" class="btn icon-btn" title="Ir para o Final">⏩ Pular p/ Final</button>
+                </div>
+                
+                <div class="legend">
+                    <span class="legend-item"><span class="color-box default"></span> Padrão</span>
+                    <span class="legend-item"><span class="color-box compare"></span> Comparando</span>
+                    <span class="legend-item"><span class="color-box action"></span> Troca/Deslocamento</span>
+                    <span class="legend-item"><span class="color-box sorted"></span> Posição Final</span>
+                </div>
+
+                <div id="visualizer-container" class="array-visualizer">
+                    <!-- Elementos gerados via JS -->
+                </div>
+            </section>
+
+            <!-- PAINEL DE MÉTRICAS E LOGS -->
+            <section id="metrics-section" class="metrics-panel hidden">
+                <h3>📊 Análise de Execução</h3>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <h4>Comparações Realizadas</h4>
+                        <span id="count-comparisons">0</span>
+                    </div>
+                    <div class="metric-box">
+                        <h4>Trocas / Deslocamentos</h4>
+                        <span id="count-actions">0</span>
+                    </div>
+                </div>
+                <div class="log-container">
+                    <h4>Registo Passo a Passo (Tempo Real)</h4>
+                    <div id="execution-log" class="log-box"></div>
+                </div>
+            </section>
+
+            <!-- PAINEL DE TESTES AUTOMATIZADOS -->
+            <section id="test-panel" class="test-panel hidden">
+                <div class="test-header">
+                    <h3>✅ Relatório de Testes Automatizados</h3>
+                    <div class="test-summary">
+                        <span id="test-passed" class="badge success">Aprovados: 0</span>
+                        <span id="test-failed" class="badge error">Reprovados: 0</span>
+                    </div>
+                </div>
+                <div class="test-table-container">
+                    <table id="test-table">
+                        <thead>
+                            <tr>
+                                <th>Cenário</th>
+                                <th>Algoritmo</th>
+                                <th>Direção</th>
+                                <th>Esperado</th>
+                                <th>Obtido</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="test-results-body">
+                            <!-- Resultados inseridos via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script  src="js/main.js"></script>
+</body>
+</html>
